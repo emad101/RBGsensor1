@@ -2,9 +2,10 @@
 
 //SOA to pin A4
 //SCL to pin A5
- 
-char RBGInput[10]; // putting the values of the rbg in an array to be used later. should be 2d array once we add more sesnors
-int numOfArray =0; //current value of array
+
+int numOfArray =0;
+int numOfColums = 1; // for now 
+char * RBGInput [1][10]; //2d array that has only 1 colum for now
  
  
 // initialize Color Sensor object 
@@ -44,19 +45,19 @@ void loop ( )  {
  Serial. print ( " \t Blue:" ) ; Serial. print ( b ) ;
 
   if( g > 1.15){
-  RBGInput[numOfArray] = 'g';
+  RBGInput[numOfColums][numOfArray] = 'g';
   numOfArray++;
    Serial. print ( " green found" );
    delay(200);
  }
  if(r > 1.55) {
-  RBGInput[numOfArray] = 'r';
+  RBGInput[numOfColums][numOfArray] = 'r';
   numOfArray++;
    Serial. print ( " red found" );
    delay(200);
  }
   if(b > 1.15) {
-  RBGInput[numOfArray] = 'b';
+  RBGInput[numOfColums][numOfArray] = 'b';
   numOfArray++;
    Serial. print ( " blue found" );
    delay(200);
@@ -71,11 +72,27 @@ void loop ( )  {
 
 
 // get the values of array to be used by other team members 
-  void returnArray( char []){
-  char currentArray[numOfArray];
+  void returnArray( char [][10]){
+  char currentArray[numOfColums][numOfArray];
   for(int i =0; i < numOfArray; i++){
-    currentArray[i] = RBGInput[i];
+    for(int j=0; j< numOfColums; j++){
+       currentArray[j][i] = RBGInput[j][i];
+    }
+  } 
+      return currentArray;
   }
-  return currentArray;
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
