@@ -44,35 +44,46 @@ void loop ( )  {
  Serial. print ( " \t Green:" ) ;Serial. print ( g ) ; 
  Serial. print ( " \t Blue:" ) ; Serial. print ( b ) ;
 
+boolean black = (r > max || g > max || b > max );
+boolean white = (r = 0 || g = 0 || b = 0 );
+
+ if( white && !black){
+
   if( g > 1.15){
   RBGInput[numOfColums][numOfArray] = 'g';
   numOfArray++;
    Serial. print ( " green found" );
    delay(200);
+   break;
  }
  if(r > 1.55) {
   RBGInput[numOfColums][numOfArray] = 'r';
   numOfArray++;
    Serial. print ( " red found" );
    delay(200);
+   break;
  }
   if(b > 1.15) {
   RBGInput[numOfColums][numOfArray] = 'b';
   numOfArray++;
    Serial. print ( " blue found" );
    delay(200);
+   break
+ }
+ delay(1000);
  }
 
  // output line 
  Serial. println ( "" ) ;
  
  // adjust wait time for serial debugging 
- delay ( 100 ) ;
+ delay ( 1000 ) ;
 }
 
 
+
 // get the values of array to be used by other team members 
-  void returnArray( char [][10]){
+  void returnArray( char [1][10]){
   char currentArray[numOfColums][numOfArray];
   for(int i =0; i < numOfArray; i++){
     for(int j=0; j< numOfColums; j++){
