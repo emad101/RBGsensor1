@@ -44,8 +44,8 @@ void loop ( )  {
  Serial. print ( " \t Green:" ) ;Serial. print ( g ) ; 
  Serial. print ( " \t Blue:" ) ; Serial. print ( b ) ;
 
-boolean black = (r > max || g > max || b > max );
-boolean white = (r = 0 || g = 0 || b = 0 );
+boolean black = (r >= 1.04 || g >= 1.04 || b > 0.89 );
+boolean white = (clearcol >= 11500 );
 
  if( white && !black){
 
@@ -54,21 +54,21 @@ boolean white = (r = 0 || g = 0 || b = 0 );
   numOfArray++;
    Serial. print ( " green found" );
    delay(200);
-   break;
+   
  }
  if(r > 1.55) {
   RBGInput[numOfColums][numOfArray] = 'r';
   numOfArray++;
    Serial. print ( " red found" );
    delay(200);
-   break;
+   
  }
   if(b > 1.15) {
   RBGInput[numOfColums][numOfArray] = 'b';
   numOfArray++;
    Serial. print ( " blue found" );
    delay(200);
-   break
+   
  }
  delay(1000);
  }
@@ -77,7 +77,7 @@ boolean white = (r = 0 || g = 0 || b = 0 );
  Serial. println ( "" ) ;
  
  // adjust wait time for serial debugging 
- delay ( 1000 ) ;
+ delay ( 2000 ) ;
 }
 
 
