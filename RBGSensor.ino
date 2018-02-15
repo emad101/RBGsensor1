@@ -4,8 +4,8 @@
 //SCL to pin A5
 
 int numOfArray =0;
-int numOfColums = 1; // for now 
-char * RBGInput [1][10]; //2d array that has only 1 colum for now
+int FirstSensorC = 0;
+char * RBGInput [10][1]; //2d array that has only 1 raw for now
  
  
 // initialize Color Sensor object 
@@ -50,26 +50,31 @@ boolean white = (clearcol >= 11500 );
  if( white && !black){
 
   if( g > 1.15){
-  RBGInput[numOfColums][numOfArray] = 'g';
-  numOfArray++;
+  RBGInput[FirstSensorC][numOfArray] = 'g';
+  FirstSensorC++;
    Serial. print ( " green found" );
    delay(200);
    
  }
- if(r > 1.55) {
-  RBGInput[numOfColums][numOfArray] = 'r';
-  numOfArray++;
+ else if(r > 1.55) {
+  RBGInput[FirstSensorC][numOfArray] = 'r';
+  FirstSensorC++;
    Serial. print ( " red found" );
    delay(200);
    
  }
-  if(b > 1.15) {
-  RBGInput[numOfColums][numOfArray] = 'b';
-  numOfArray++;
+  else if(b > 1.15) {
+  RBGInput[FirstSensorC][numOfArray] = 'b';
+  FirstSensorC++;
    Serial. print ( " blue found" );
    delay(200);
-   
- }
+   }
+   else {
+  RBGInput[FirstSensorC][numOfArray] = 'n'; //n for nothing
+  FirstSensorC++;
+   Serial. print ( " nothing Added" );
+   delay(200);
+   }
  delay(1000);
  }
 
